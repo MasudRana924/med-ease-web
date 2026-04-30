@@ -1,6 +1,5 @@
 "use client";
 
-import AuthGuard from "@/components/guards/AuthGuard";
 import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
 import { Icon } from "@iconify/react";
@@ -13,24 +12,14 @@ export default function CheckoutPage() {
     const { cart } = useCart();
 
     const [shippingInfo, setShippingInfo] = useState({
-        name: user?.name || "",
-        email: user?.email || "",
-        phone: user?.phone || "",
+        name: "",
+        email: "",
+        phone: "",
         address: ""
     });
 
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        if (user) {
-            setShippingInfo(prev => ({
-                ...prev,
-                name: prev.name || user.name || "",
-                email: prev.email || user.email || "",
-                phone: prev.phone || user.phone || ""
-            }));
-        }
-    }, [user]);
 
     const total = cart.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
 
@@ -103,8 +92,7 @@ export default function CheckoutPage() {
     };
 
     return (
-        <AuthGuard>
-            <div className="flex flex-col min-h-screen bg-white text-black">
+        <div className="flex flex-col min-h-screen bg-white text-black">
                 <main className="flex-1 container mx-auto px-4 py-8 md:py-16 max-w-6xl">
                     <div className="w-full mb-6">
                         <Link
@@ -251,6 +239,6 @@ export default function CheckoutPage() {
                     </div>
                 </main>
             </div>
-        </AuthGuard>
+        
     );
 }

@@ -10,7 +10,7 @@ import { MedicineService } from "@/lib/medicine/actions";
 import { Medicine } from "@/types";
 import Button from "@/components/Button";
 
-import GridSwitcher from "@/components/GridSwitcher";
+import GridSwitcher from "@/components/shared/GridSwitcher";
 
 function SearchableMedicineList() {
     const router = useRouter(); // Import useRouter from next/navigation
